@@ -14,6 +14,17 @@ $(window).on('load', function() {
     });
 });
 
+
+// Stop Pace after page load
+$(window).on('load', function () {
+    if (window.Pace) {
+        Pace.stop();
+        Pace.options.restartOnRequestAfter = false;
+    }
+});
+
+
+
 jQuery(document).ready(function() {
     var $container = jQuery(".filter-container ul");
     jQuery(".filter-controls-wrap li").on('click', function() {
@@ -82,6 +93,17 @@ jQuery(document).ready(function() {
         $("body").removeClass('toggled');
     });
     
+
+    // Stop Pace when Fancybox opens
+    $(document).on('beforeShow.fb', function () {
+        if (window.Pace) {
+            //console.log('Fancybox clicked');
+            Pace.stop();
+        }
+    });
+
+
+
 });
 
 
